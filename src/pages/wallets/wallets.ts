@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Wallet, IWallet } from '../../database';
+ 
 /*
   Generated class for the Wallets page.
 
@@ -13,10 +15,12 @@ import { NavController } from 'ionic-angular';
 })
 export class WalletsPage {
 
+  wallets : IWallet[];
+
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
-    console.log('Hello WalletsPage Page');
+    Wallet.all().then(results => this.wallets = results);
   }
 
 }

@@ -1,4 +1,3 @@
-import { IWallet } from './database';
 // import  Dexie from 'dexie';
 import  Dexie from '../node_modules/dexie/dist/dexie';
 
@@ -54,6 +53,20 @@ export class Wallet implements IWallet {
     this.name = name;
     if(id) this.id = id;
   }
+
+  save(){
+    return db.wallets.add(this); 
+  }
+
+  static createFirst(){
+    let wallet = new Wallet(0, "Mi primera billetera");
+
+    return wallet.save();
+  }
+
+  static all(){
+    return db.wallets.orderBy("id").toArray();
+  }
 }
 
 export class Transaction implements ITransaction {
@@ -106,3 +119,5 @@ export class Transaction implements ITransaction {
 }
 
 export let db = new TransactionAppDB();
+
+// Wallet.createFirst();

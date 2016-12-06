@@ -16,12 +16,10 @@
     <ion-list-header>
       Mis billeteras
     </ion-list-header>
-    <!--<ion-item *ngFor="let wallet of wallets">-->
-    <ion-item>
-      
+    <ion-item *ngFor="let wallet of wallets">
       <ion-avatar item-left><ion-icon name="logo-usd"></ion-icon></ion-avatar>
-      <h2>Principal</h2>
-      <h3>200</h3>
+      <h2>{{wallet.name}}</h2>
+      <h3>{{wallet.amount}}</h3>
       <p>
         <button ion-button clear>Seleccionar</button>
         <button ion-button color="danger">Eliminar</button>
