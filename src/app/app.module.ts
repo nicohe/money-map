@@ -8,6 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { AddingPage } from '../pages/adding/adding';
 import { GeolocationService } from '../services/geolocation.service';
+import { WalletService } from '../services/wallets.service';
 import { MapPage } from '../pages/map/map';
 import { WalletsPage } from '../pages/wallets/wallets';
 
@@ -38,6 +39,6 @@ import { WalletsPage } from '../pages/wallets/wallets';
     MapPage,
     WalletsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GeolocationService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GeolocationService, WalletService ]
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+import { WalletService } from './../../services/wallets.service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -20,10 +21,12 @@ export class TransactionsPage {
   title : string = "Movimientos";
   addingPage = AddingPage;
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, private walletService : WalletService) {}
 
   ionViewWillEnter() {
 
+    this.walletService.validateFirstWallet();
+    
     this.loadTransactions();
   }
 

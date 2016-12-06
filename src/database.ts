@@ -67,6 +67,10 @@ export class Wallet implements IWallet {
   static all(){
     return db.wallets.orderBy("id").toArray();
   }
+
+  static first() {
+    return db.wallets.orderBy("id").limit(1).first();
+  }
 }
 
 export class Transaction implements ITransaction {
