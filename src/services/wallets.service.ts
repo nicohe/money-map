@@ -10,8 +10,8 @@ export class WalletService {
         localStorage.setItem(StorageKey, walletID);
     }
 
-    getID() : string {
-        return localStorage.getItem(StorageKey);
+    getID() : number {
+        return parseInt(localStorage.getItem(StorageKey));
     }
 
     validateFirstWallet(){

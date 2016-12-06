@@ -1,3 +1,4 @@
+import { WalletService } from './../../services/wallets.service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Transaction } from '../../database';
@@ -21,12 +22,12 @@ export class AddingPage {
   shouldSend : boolean = true;
   imageData : string;
 
-  constructor(public navCtrl: NavController, public geolocator : GeolocationService) {
+  constructor(public navCtrl: NavController, public geolocator : GeolocationService, private walletService : WalletService) {
     this.model = new Transaction(null,"");
   }
 
   ionViewDidLoad() {
-    this.model = new Transaction(null,"");
+    this.model = this.cleanTransaction();
   }
 
   getPhoto(){
@@ -68,10 +69,18 @@ export class AddingPage {
   save(){
     if (this.shouldSend) {
       this.model.save().then(result => {
-        this.model = new Transaction(null,"");
+        this.model = this.cleanTransaction();
         this.navCtrl.pop();
       });
     }
+  }
+
+  cleanTransaction() : Transaction {
+    let transaction = new Transaction(null, "");
+
+    transaction.walletId = this.walletService.getID(); 
+
+    return transaction;
   }
 
 }

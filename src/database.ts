@@ -18,6 +18,11 @@ export class TransactionAppDB extends Dexie {
       wallets: '++id,amount,name'
     });
 
+    this.version(3).stores({
+      transactions: '++id,amount,lat,lng,title,imageUrl, walletId',
+      wallets: '++id,amount,name'
+    });
+
     this.transactions.mapToClass(Transaction);
     this.wallets.mapToClass(Wallet);
 
@@ -35,6 +40,7 @@ export interface ITransaction {
   lng: number;
   title: string;
   imageUrl: string;
+  walletId: number;
 }
 
 export interface IWallet {
@@ -81,8 +87,9 @@ export class Transaction implements ITransaction {
   lng: number;
   title: string;
   imageUrl: string;
+  walletId: number;
 
-  constructor(amount : number, title : string, lat?: number, lng?: number, id?: number, imageUrl?: string){
+  constructor(amount : number, title : string, lat?: number, lng?: number, id?: number, imageUrl?: string, walletId ?: number){
 
     this.amount = amount;
     this.title = title;
@@ -91,6 +98,7 @@ export class Transaction implements ITransaction {
     if(lng) this.lng = lng;
     if(imageUrl) this.imageUrl = imageUrl;
     if(id) this.id = id;
+    if(walletId) this.walletId = walletId;
   }
 
   save(){
