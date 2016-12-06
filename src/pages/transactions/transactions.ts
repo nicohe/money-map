@@ -27,6 +27,9 @@ export class TransactionsPage {
 
     this.walletService.validateFirstWallet();
     
+    console.log(this.walletService.getID());
+    
+
     this.loadTransactions();
   }
 
