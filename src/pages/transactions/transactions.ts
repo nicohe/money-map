@@ -1,6 +1,7 @@
-import { WalletService } from './../../services/wallets.service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { WalletService } from './../../services/wallets.service';
+import { TransactionService } from './../../services/transactions.service';
 
 import { Transaction } from '../../database';
 import { AddingPage } from '../adding/adding';
@@ -21,7 +22,8 @@ export class TransactionsPage {
   title : string = "Movimientos";
   addingPage = AddingPage;
 
-  constructor(public navCtrl: NavController, private walletService : WalletService) {}
+  constructor(public navCtrl: NavController, private walletService : WalletService,
+   private transactionService : TransactionService) {}
 
   ionViewWillEnter() {
 
@@ -34,7 +36,7 @@ export class TransactionsPage {
   }
 
   loadTransactions(){
-    Transaction.all()
+    this.transactions.all()
                .then((resultados) => this.transactions = resultados);
   }
 

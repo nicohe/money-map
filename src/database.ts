@@ -125,8 +125,8 @@ export class Transaction implements ITransaction {
     this.lng = null;
   }
 
-  static all(){
-    return db.transactions.orderBy('id').reverse().toArray();
+  static all(walletID){
+    return db.transactions.where("walletId").equals(walletID).reverse().toArray();
   }
 }
 

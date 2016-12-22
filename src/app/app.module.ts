@@ -11,6 +11,7 @@ import { GeolocationService } from '../services/geolocation.service';
 import { WalletService } from '../services/wallets.service';
 import { MapPage } from '../pages/map/map';
 import { WalletsPage } from '../pages/wallets/wallets';
+import { TransactionService } from '../services/transaction.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,6 @@ import { WalletsPage } from '../pages/wallets/wallets';
     MapPage,
     WalletsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GeolocationService, WalletService ]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GeolocationService, WalletService, TransactionService ]
 })
 export class AppModule {}

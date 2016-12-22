@@ -9,6 +9,7 @@ import {
 } from 'ionic-native';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Transaction } from '../../database';
+import { TransactionService } from './../../services/transactions.service';
 
 /*
   Generated class for the Map page.
@@ -24,7 +25,8 @@ export class MapPage {
 
   map : GoogleMap = null;
 
-  constructor(public navCtrl: NavController, public geolocator : GeolocationService) {}
+  constructor(public navCtrl: NavController, public geolocator : GeolocationService,
+   private transactionService : TransactionService) {}
 
   ionViewDidEnd() {
     this.geolocator.get().then((result) => {
@@ -64,7 +66,7 @@ export class MapPage {
   }
 
   loadMarkers(){
-    Transaction.all().then((results) => this.loadTransactionMarkers(results));
+    this.transactionService.all().then((results) => this.loadTransactionMarkers(results));
   }
 
   loadTransactionMarkers(transactions){
